@@ -5,6 +5,12 @@ public class Papotage {
     private String corps;
 
     public Papotage(String sujet, String corps) {
+        /*
+        * Création d'un ragot
+        * Param:
+        *   sujet : String
+        *   corps : String
+         */
         this.sujet = sujet;
         this.corps = corps;
     }
@@ -14,7 +20,7 @@ public class Papotage {
     }
 
     public String getCorps() {
-        return corps;
+        return this.corps;
     }
 
 
