@@ -11,14 +11,27 @@ public class Batiment {
         this.concierge = new Concierge(nomConcierge);
     }
 
-    public void createBavard(String nom, String prenom, String dateDeNaissance) {
-        bavards.add(new Bavard(nom, prenom, dateDeNaissance));
+    public String createBavard(String nom, String prenom, String dateDeNaissance) {
+        boolean res = true;
+        int i = 0;
+        Bavard newBavard = new Bavard(nom, prenom, dateDeNaissance);
+        while (res == true && i < this.bavards.size()) {
+            if (newBavard.equals(this.bavards.get(i))) {
+                res = false;
+            }
+        }
+        if (res) {
+            bavards.add(new Bavard(nom, prenom, dateDeNaissance));
+            return "Le Bavard à été ajouté";
+        } else {
+            return "Le Bavard existe déjà";
+        }
     }
 
 
     public void deleteBavard(Bavard bavard) {
         for (Bavard bavard1: this.bavards) {
-            if (bavard.toString() == bavard1.toString()){
+            if (bavard.equals(bavard1)) {
                 this.bavards.remove(bavard);
             }
         }
@@ -26,7 +39,9 @@ public class Batiment {
 
     public void connectBavard(Bavard bavard) {
         for (Bavard bavard1: this.bavards) {
-            if (bavard.toString() == bavard1.toString())
+            if (bavard.equals(bavard1)) {
+                bavard.connect();
+            }
         }
     }
 }

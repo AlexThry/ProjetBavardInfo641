@@ -39,6 +39,9 @@ public class Bavard implements PapotageListener {
     }
 
     public void emitMessage(String sujet, String corps) {
+        /*
+        * Permet à un bavard d'envoyer un message qui sera reçu par un concierge
+         */
         PapotageEvent papotageEvent = new PapotageEvent(this, sujet, corps);
         for (PapotageListener concierge: concierges) {
             concierge.nouveauPapotage(papotageEvent);
@@ -47,6 +50,9 @@ public class Bavard implements PapotageListener {
 
     @Override
     public void nouveauPapotage(PapotageEvent papotageEvent) {
+        /*
+        * Permet à un bavard de recevoir un message de la part d'un concierge
+         */
         Bavard source = (Bavard) papotageEvent.getSource();
         System.out.println("####################\nNouveau message pour : " + this.prenom + "\n De la part de : " + source.prenom + "\n--------------------");
         System.out.println(papotageEvent.getSujet());
@@ -57,10 +63,16 @@ public class Bavard implements PapotageListener {
 
 
     public void addListener(Concierge concierge) {
+        /*
+        * Permet d'ajouter un concierge dans la liste des listeners
+         */
         this.concierges.add(concierge);
     }
 
     public void souscrire(Concierge concierge) {
+        /*
+        * Permet de s'ajouter dans la liste des listeners d'un concierge
+         */
         concierge.addListener(this);
     }
 }

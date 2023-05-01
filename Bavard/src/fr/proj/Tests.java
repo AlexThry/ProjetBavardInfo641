@@ -15,6 +15,10 @@ public class Tests {
         carlyne.connect();
         alex.emitMessage("Hello", "Je suis alex");
         fred.emitMessage("Je me presente", "Fred");
+
+        Batiment bat = new Batiment("Manuel");
+        bat.createBavard("Thierry", "Alexis", "18/03/2002");
+
     }
 
 }
