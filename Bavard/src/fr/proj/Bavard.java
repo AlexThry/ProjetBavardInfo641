@@ -1,6 +1,7 @@
 package fr.proj;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Bavard implements PapotageListener {
     private String nom;
@@ -54,10 +55,20 @@ public class Bavard implements PapotageListener {
         * Permet à un bavard de recevoir un message de la part d'un concierge
          */
         Bavard source = (Bavard) papotageEvent.getSource();
-        System.out.println("####################\nNouveau message pour : " + this.prenom + "\n De la part de : " + source.prenom + "\n--------------------");
+        System.out.println("########################################\nNouveau message pour : " + this.prenom + "\nDe la part de : " + source.prenom + "\n----------------------------------------");
         System.out.println(papotageEvent.getSujet());
         System.out.println(papotageEvent.getCorps());
-        System.out.println("####################");
+        System.out.println("########################################");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Bavard bavard = (Bavard) o;
+        if (this.nom == bavard.nom && this.prenom == bavard.prenom && this.dateDeNaissance == bavard.dateDeNaissance) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

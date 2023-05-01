@@ -10,6 +10,9 @@ public class Concierge implements PapotageListener {
         this.name = name;
     }
 
+    public ArrayList<PapotageListener> getBavardsListeners() {
+        return this.bavardsListeners;
+    }
     public void addListener(PapotageListener bavard) {
         this.bavardsListeners.add(bavard);
     }

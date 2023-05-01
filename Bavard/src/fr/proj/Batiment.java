@@ -3,7 +3,6 @@ package fr.proj;
 import java.util.ArrayList;
 
 public class Batiment {
-    private String nom;
     private ArrayList<Bavard> bavards = new ArrayList<>();
     private Concierge concierge;
 
@@ -19,9 +18,12 @@ public class Batiment {
             if (newBavard.equals(this.bavards.get(i))) {
                 res = false;
             }
+            i++;
         }
         if (res) {
-            bavards.add(new Bavard(nom, prenom, dateDeNaissance));
+            newBavard.addListener(this.concierge);
+            bavards.add(newBavard);
+
             return "Le Bavard à été ajouté";
         } else {
             return "Le Bavard existe déjà";
@@ -43,5 +45,34 @@ public class Batiment {
                 bavard.connect();
             }
         }
+    }
+
+    public void addInteret(PapotageListener bavard) {
+        boolean res = true;
+         for (PapotageListener bavard1: this.concierge.getBavardsListeners()) {
+             if (bavard1.equals(bavard)) {
+                 res = false;
+             }
+         }
+         if (res) {
+             this.concierge.addListener(bavard);
+         }
+    }
+
+    public void sendMessage(String senderLastName, String senderFirstName, String senderBirthDate, String subject, String content) {
+        Bavard sender = new Bavard(senderLastName, senderFirstName, senderBirthDate);
+        for (PapotageListener bavard: this.concierge.getBavardsListeners()) {
+            if (sender.equals(bavard)) {
+                bavard.emitMessage(subject, content);
+            }
+        }
+    }
+
+    public ArrayList<Bavard> getBavards() {
+        return bavards;
+    }
+
+    public Concierge getConcierge() {
+        return concierge;
     }
 }
