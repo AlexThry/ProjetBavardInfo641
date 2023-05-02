@@ -8,6 +8,7 @@ public class Bavard implements PapotageListener {
     private String prenom;
     private String dateDeNaissance;
     private ArrayList<PapotageListener> concierges = new ArrayList<>();
+    private ArrayList<Message> messagesList = new ArrayList<>();
     private boolean connected = false;
 
 
@@ -35,6 +36,8 @@ public class Bavard implements PapotageListener {
                 "nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", dateDeNaissance='" + dateDeNaissance + '\'' +
+                ", concierges=" + concierges +
+                ", messagesList=" + messagesList +
                 ", connected=" + connected +
                 '}';
     }
@@ -47,6 +50,7 @@ public class Bavard implements PapotageListener {
         for (PapotageListener concierge: concierges) {
             concierge.nouveauPapotage(papotageEvent);
         }
+        this.messagesList.add(new Message(this.prenom, sujet, corps));
     }
 
     @Override
@@ -54,11 +58,10 @@ public class Bavard implements PapotageListener {
         /*
         * Permet à un bavard de recevoir un message de la part d'un concierge
          */
+
         Bavard source = (Bavard) papotageEvent.getSource();
-        System.out.println("########################################\nNouveau message pour : " + this.prenom + "\nDe la part de : " + source.prenom + "\n----------------------------------------");
-        System.out.println(papotageEvent.getSujet());
-        System.out.println(papotageEvent.getCorps());
-        System.out.println("########################################");
+        Message message = new Message(source.prenom, papotageEvent.getSujet(), papotageEvent.getCorps());
+        this.messagesList.add(message);
     }
 
     @Override
@@ -87,6 +90,7 @@ public class Bavard implements PapotageListener {
         concierge.addListener(this);
     }
 
+<<<<<<< HEAD
     public String getPrenom() {
         return prenom;
     }
@@ -98,4 +102,21 @@ public class Bavard implements PapotageListener {
         return connected;
     }
 
+=======
+    public ArrayList<Message> getMessagesList() {
+        return messagesList;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getDateDeNaissance() {
+        return dateDeNaissance;
+    }
+>>>>>>> 0c5a9f4d3fca7cd6c8635341b98cca94b4ca350d
 }
