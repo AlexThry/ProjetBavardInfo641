@@ -11,12 +11,15 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 =======
 >>>>>>> 0c5a9f4d3fca7cd6c8635341b98cca94b4ca350d
+=======
+>>>>>>> f7e48ef10940d01ed97c93420377b0d2bb1e4abf
 public class Fenetre extends JFrame {
 	private Batiment bat;
 	private JPanel contentPane;
@@ -190,6 +193,7 @@ public class Fenetre extends JFrame {
 		this.contentPaneMessage.add(message);
 		this.contentPaneMessage.revalidate();
 //		this.contentPaneMessage.repaint();
+<<<<<<< HEAD
 	}
 
 	public void removeMessages() {
@@ -224,6 +228,19 @@ public class Fenetre extends JFrame {
 		}
 =======
 >>>>>>> 0c5a9f4d3fca7cd6c8635341b98cca94b4ca350d
+=======
+	}
+
+	public void removeMessages() {
+		this.contentPaneMessage.removeAll();
+		this.contentPaneMessage.revalidate();
+//		this.contentPaneMessage.repaint();
+
+	}
+
+	public Batiment getBatiment() {
+		return this.bat;
+>>>>>>> f7e48ef10940d01ed97c93420377b0d2bb1e4abf
 	}
 
 }
