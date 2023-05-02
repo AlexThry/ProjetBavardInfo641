@@ -3,16 +3,11 @@ package fr.proj;
 import fr.proj.listeners.ecouteurBoutonAjoutBavard;
 import fr.proj.window.MessagePanel;
 
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -87,7 +82,15 @@ public class Fenetre extends JFrame {
 		dateTextField.setText("jj/mm/aaaa");
 		dateTextField.setColumns(10);
 		creationBavardPanel.add(dateTextField);
-		
+
+		// Création d'un objet GridBagConstraints pour centrer le bouton
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+
+
+
 		JButton creerBavardButton = new JButton("Valider");
 		creationBavardPanel.add(creerBavardButton);
 		ecouteurBoutonAjoutBavard creerBavardListener = new ecouteurBoutonAjoutBavard(nomTextField, prenomTextField, dateTextField);
@@ -100,13 +103,17 @@ public class Fenetre extends JFrame {
 		JPanel panel = new JPanel();
 		gestionBavardPanel.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 2, 0, 0));
-		
+
+		// Section pour choisir parmis les bavards existants
 		JLabel choixBavardLabel = new JLabel("Choix bavard :");
 		panel.add(choixBavardLabel);
 		
 		JComboBox choixBavardCombo = new JComboBox();
+		//String[] options = bat.getBavards().;
+		//JComboBox<String> comboBox = new JComboBox<String>(options);
 		panel.add(choixBavardCombo);
-		
+
+		// Section pour établir la connection entre un bavard et le concierge
 		JLabel estConnecte = new JLabel("Est Connecté :");
 		panel.add(estConnecte);
 		

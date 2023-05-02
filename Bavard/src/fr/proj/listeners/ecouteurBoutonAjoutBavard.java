@@ -17,14 +17,11 @@ public class ecouteurBoutonAjoutBavard implements ActionListener {
         this.nomTextField = nomTextField;
         this.prenomTextField = prenomTextField;
         this.dateTextField = dateTextField;
-        System.out.println(1);
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         // Récupérer les valeurs des champs nom, prénom et date de naissance
-        System.out.println(2);
         String nom = nomTextField.getText();
         String prenom = prenomTextField.getText();
         String dateNaissance = dateTextField.getText();
