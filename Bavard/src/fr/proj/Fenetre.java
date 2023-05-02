@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Fenetre extends JFrame {
-
+	private Batiment bat;
 	private JPanel contentPane;
 	private JPanel contentPaneMessage = new JPanel();
 
@@ -43,6 +43,7 @@ public class Fenetre extends JFrame {
 
 
 	public Fenetre() {
+		this.bat = new Batiment("Concierge");
 		setMinimumSize(new Dimension(500, 350));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -54,25 +55,6 @@ public class Fenetre extends JFrame {
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane);
-		
-		JPanel creationBatiment = new JPanel();
-		tabbedPane.addTab("Création Batiment", null, creationBatiment, null);
-		tabbedPane.setBackgroundAt(0, new Color(255, 255, 255));
-		creationBatiment.setLayout(new GridLayout(2, 2, 0, 0));
-		
-		JLabel lblNewLabel = new JLabel("Nom Concierge : ");
-		creationBatiment.add(lblNewLabel);
-		
-		nomConciergeTextField = new JTextField();
-		creationBatiment.add(nomConciergeTextField);
-		nomConciergeTextField.setColumns(20);
-		
-		JButton btnNewButton = new JButton("Valider");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		creationBatiment.add(btnNewButton);
 		
 		JPanel gestionBatiment = new JPanel();
 		tabbedPane.addTab("Gestion Batiment", null, gestionBatiment, null);
@@ -168,23 +150,7 @@ public class Fenetre extends JFrame {
 			}
 		});
 		choixBavard.add(validerMessagerie);
-		
-//		JPanel message1 = new JPanel();
-//		message1.setLayout(new GridLayout(0, 2, 0, 0));
-//
-//		JLabel senderLabel = new JLabel("Sender");
-//		message1.add(senderLabel);
-//
-//		JLabel varSenderLabel = new JLabel("Alexis");
-//		varSenderLabel.setForeground(Color.RED);
-//		message1.add(varSenderLabel);
-//
-//		JLabel subjectLabel = new JLabel("Subject");
-//		message1.add(subjectLabel);
-//
-//		JLabel varSubjectLabel = new JLabel("Subject");
-//		varSubjectLabel.setForeground(Color.RED);
-//		message1.add(varSubjectLabel);
+
 		
         contentPaneMessage.setLayout(new BoxLayout(contentPaneMessage, BoxLayout.Y_AXIS));
 
@@ -200,6 +166,10 @@ public class Fenetre extends JFrame {
 	public void addMessage(String subject, String sender, String content) {
 		MessagePanel message = new MessagePanel(subject, sender, content);
 		this.contentPaneMessage.add(message);
+	}
+
+	public void setBatiment(Batiment bat) {
+		this.bat = bat;
 	}
 
 }
