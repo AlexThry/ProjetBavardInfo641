@@ -1,5 +1,6 @@
 package fr.proj;
 
+import fr.proj.listeners.EcouteurBoutonValiderMessagerie;
 import fr.proj.listeners.ecouteurBoutonAjoutBavard;
 import fr.proj.window.MessagePanel;
 
@@ -7,9 +8,6 @@ import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Fenetre extends JFrame {
 	private Batiment bat;
@@ -39,6 +37,12 @@ public class Fenetre extends JFrame {
 
 	public Fenetre() {
 		this.bat = new Batiment("Concierge");
+		this.bat.createBavard("Thierry", "Alexis", "18/03/2002");
+		this.bat.createBavard("Thierry", "Alexis2", "18/03/2002");
+//		this.bat.getBavards().get(1).connect();
+		this.bat.getBavards().get(0).emitMessage("sujet", "corps");
+		this.bat.getBavards().get(0).emitMessage("sujet2", "corps");
+		this.bat.getBavards().get(1).emitMessage("sujet3", "corps");
 		setMinimumSize(new Dimension(500, 350));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -148,14 +152,13 @@ public class Fenetre extends JFrame {
 		choixBavard.add(choixBavardMessagerieLabel);
 		
 		JComboBox choixBavardMessagerieComboBox = new JComboBox();
-		choixBavardMessagerieComboBox.setModel(new DefaultComboBoxModel(new String[] {"Alex", "Carlyne", "Andres"}));
+		choixBavardMessagerieComboBox.setPreferredSize(new Dimension(150, 30));
+		choixBavardMessagerieComboBox.setModel(new DefaultComboBoxModel(this.bat.getBavards().toArray(new Bavard[0])));
 		choixBavard.add(choixBavardMessagerieComboBox);
 		
 		JButton validerMessagerie = new JButton("Valider");
-		validerMessagerie.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		EcouteurBoutonValiderMessagerie ecouteurBoutonValiderMessagerie = new EcouteurBoutonValiderMessagerie(choixBavardMessagerieComboBox, this);
+		validerMessagerie.addActionListener(ecouteurBoutonValiderMessagerie);
 		choixBavard.add(validerMessagerie);
 
 		
@@ -167,16 +170,27 @@ public class Fenetre extends JFrame {
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setPreferredSize(new Dimension(350, 200));
 		messagerieTab.add(scrollPane, BorderLayout.CENTER);
+
+
 	}
 
 
 	public void addMessage(String subject, String sender, String content) {
 		MessagePanel message = new MessagePanel(subject, sender, content);
 		this.contentPaneMessage.add(message);
+		this.contentPaneMessage.revalidate();
+//		this.contentPaneMessage.repaint();
 	}
 
-	public void setBatiment(Batiment bat) {
-		this.bat = bat;
+	public void removeMessages() {
+		this.contentPaneMessage.removeAll();
+		this.contentPaneMessage.revalidate();
+//		this.contentPaneMessage.repaint();
+
+	}
+
+	public Batiment getBatiment() {
+		return this.bat;
 	}
 
 }
