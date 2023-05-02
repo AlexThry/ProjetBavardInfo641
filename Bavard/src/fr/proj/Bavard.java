@@ -90,8 +90,6 @@ public class Bavard implements PapotageListener {
         concierge.addListener(this);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     public String getPrenom() {
         return prenom;
     }
@@ -103,9 +101,6 @@ public class Bavard implements PapotageListener {
         return connected;
     }
 
-=======
-=======
->>>>>>> f7e48ef10940d01ed97c93420377b0d2bb1e4abf
     public ArrayList<Message> getMessagesList() {
         return messagesList;
     }
@@ -114,15 +109,8 @@ public class Bavard implements PapotageListener {
         return nom;
     }
 
-    public String getPrenom() {
-        return prenom;
-    }
-
     public String getDateDeNaissance() {
         return dateDeNaissance;
     }
-<<<<<<< HEAD
->>>>>>> 0c5a9f4d3fca7cd6c8635341b98cca94b4ca350d
-=======
->>>>>>> f7e48ef10940d01ed97c93420377b0d2bb1e4abf
+
 }
