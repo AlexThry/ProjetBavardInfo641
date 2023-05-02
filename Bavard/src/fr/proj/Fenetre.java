@@ -104,12 +104,14 @@ public class Fenetre extends JFrame {
 		creationBavardPanel.add(prenomTextField);
 		
 		dateTextField = new JTextField();
-		dateTextField.setText("jj/mm/aaa");
+		dateTextField.setText("jj/mm/aaaa");
 		dateTextField.setColumns(10);
 		creationBavardPanel.add(dateTextField);
 		
 		JButton creerBavardButton = new JButton("Valider");
 		creationBavardPanel.add(creerBavardButton);
+		ecouteurBoutonAjoutBavard creerBavardListener = new ecouteurBoutonAjoutBavard(nomTextField, prenomTextField, dateTextField);
+		creerBavardButton.addActionListener(creerBavardListener);
 		
 		JPanel gestionBavardPanel = new JPanel();
 		gestionBatiment.add(gestionBavardPanel, BorderLayout.SOUTH);
