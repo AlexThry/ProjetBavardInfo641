@@ -30,9 +30,6 @@ public class Fenetre extends JFrame {
 	private JTextField dateTextField;
 	private JTextField textField_1;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -46,9 +43,7 @@ public class Fenetre extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+
 	public Fenetre() {
 		setMinimumSize(new Dimension(500, 350));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -167,6 +162,13 @@ public class Fenetre extends JFrame {
 		choixBavardMessagerieComboBox.setModel(new DefaultComboBoxModel(new String[] {"Alex", "Carlyne", "Andres"}));
 		choixBavard.add(choixBavardMessagerieComboBox);
 		
+		JButton validerMessagerie = new JButton("Valider");
+		validerMessagerie.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		choixBavard.add(validerMessagerie);
+		
 		JPanel message1 = new JPanel();
 		// messagerieTab.add(message1, BorderLayout.CENTER);
 		message1.setLayout(new GridLayout(0, 2, 0, 0));
@@ -184,26 +186,7 @@ public class Fenetre extends JFrame {
 		JLabel varSubjectLabel = new JLabel("Subject");
 		varSubjectLabel.setForeground(Color.RED);
 		message1.add(varSubjectLabel);
-		message1.setPreferredSize(new Dimension(350, 150));
-		
-		JPanel message2 = new JPanel();
-		// messagerieTab.add(message2, BorderLayout.SOUTH);
-		message2.setLayout(new GridLayout(0, 2, 0, 0));
-		
-		JLabel senderLabel_1 = new JLabel("Sender");
-		message2.add(senderLabel_1);
-		
-		JLabel varSenderLabel_1 = new JLabel("Alexis");
-		varSenderLabel_1.setForeground(Color.RED);
-		message2.add(varSenderLabel_1);
-		
-		JLabel subjectLabel_1 = new JLabel("Subject");
-		message2.add(subjectLabel_1);
-		
-		JLabel varSubjectLabel_1 = new JLabel("Subject");
-		varSubjectLabel_1.setForeground(Color.RED);
-		message2.add(varSubjectLabel_1);
-		message2.setPreferredSize(new Dimension(350, 150));
+		//message1.setPreferredSize(new Dimension(350, 150));
 		
 		
 		JPanel contentPane = new JPanel();
@@ -218,7 +201,6 @@ public class Fenetre extends JFrame {
         varContentTextArea.setText("eycgvuieo yé&eboiyb aciybeapoic aeciyhbaeipo aeiuybhzaepiç aipudcbyxapiu");
         varContentTextArea.setLineWrap(true);
         message1.add(varContentTextArea);
-        contentPane.add(message2);
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(contentPane);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
