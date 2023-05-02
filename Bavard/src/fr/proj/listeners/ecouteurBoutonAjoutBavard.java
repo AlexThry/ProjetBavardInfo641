@@ -1,4 +1,6 @@
-package fr.proj;
+package fr.proj.listeners;
+import fr.proj.Bavard;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

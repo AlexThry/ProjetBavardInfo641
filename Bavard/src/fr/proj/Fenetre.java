@@ -1,5 +1,6 @@
 package fr.proj;
 
+import fr.proj.listeners.ecouteurBoutonAjoutBavard;
 import fr.proj.window.MessagePanel;
 
 import java.awt.EventQueue;
