@@ -1,6 +1,7 @@
 package fr.proj;
 
 import fr.proj.listeners.ecouteurBoutonAjoutBavard;
+import fr.proj.listeners.ecouteurCheckBoxConnection;
 import fr.proj.window.MessagePanel;
 
 import java.awt.*;
@@ -10,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class Fenetre extends JFrame {
 	private Batiment bat;
@@ -21,6 +23,10 @@ public class Fenetre extends JFrame {
 	private JTextField prenomTextField;
 	private JTextField dateTextField;
 	private JTextField textField_1;
+	private JComboBox choixBavardCombo;
+	private JCheckBox estConnecteCheckBox;
+	private String prenomBavardSelectionne;
+	private ArrayList<String> prenomBavards = new ArrayList<>();
 
 
 	public static void main(String[] args) {
@@ -83,17 +89,9 @@ public class Fenetre extends JFrame {
 		dateTextField.setColumns(10);
 		creationBavardPanel.add(dateTextField);
 
-		// Création d'un objet GridBagConstraints pour centrer le bouton
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-
-
-
 		JButton creerBavardButton = new JButton("Valider");
 		creationBavardPanel.add(creerBavardButton);
-		ecouteurBoutonAjoutBavard creerBavardListener = new ecouteurBoutonAjoutBavard(nomTextField, prenomTextField, dateTextField);
+		ecouteurBoutonAjoutBavard creerBavardListener = new ecouteurBoutonAjoutBavard(nomTextField, prenomTextField, dateTextField, this);
 		creerBavardButton.addActionListener(creerBavardListener);
 		
 		JPanel gestionBavardPanel = new JPanel();
@@ -104,22 +102,29 @@ public class Fenetre extends JFrame {
 		gestionBavardPanel.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 2, 0, 0));
 
-		// Section pour choisir parmis les bavards existants
+		/********* Section pour choisir parmis les bavards existants *********/
 		JLabel choixBavardLabel = new JLabel("Choix bavard :");
 		panel.add(choixBavardLabel);
 		
-		JComboBox choixBavardCombo = new JComboBox();
-		//String[] options = bat.getBavards().;
-		//JComboBox<String> comboBox = new JComboBox<String>(options);
+		this.choixBavardCombo = new JComboBox();
 		panel.add(choixBavardCombo);
 
+
 		// Section pour établir la connection entre un bavard et le concierge
-		JLabel estConnecte = new JLabel("Est Connecté :");
+		/*JLabel estConnecte = new JLabel("Est Connecté :");
 		panel.add(estConnecte);
 		
 		JLabel varEstConnecteLabel = new JLabel("Oui");
 		varEstConnecteLabel.setForeground(Color.RED);
+		panel.add(varEstConnecteLabel);*/
+
+		JLabel varEstConnecteLabel = new JLabel();
 		panel.add(varEstConnecteLabel);
+		this.estConnecteCheckBox = new JCheckBox("Est Connecté");
+		panel.add(estConnecteCheckBox);
+
+		ecouteurCheckBoxConnection etatCheckBox = new ecouteurCheckBoxConnection(this);
+		this.estConnecteCheckBox.addActionListener(etatCheckBox);
 		
 		JLabel sujetLabel = new JLabel("Sujet : ");
 		panel.add(sujetLabel);
@@ -133,7 +138,7 @@ public class Fenetre extends JFrame {
 		
 		JTextPane corpsTextPane = new JTextPane();
 		panel.add(corpsTextPane);
-		
+
 		JButton sendMessageButton = new JButton("Envoyer");
 		gestionBavardPanel.add(sendMessageButton, BorderLayout.SOUTH);
 		
@@ -158,7 +163,6 @@ public class Fenetre extends JFrame {
 		});
 		choixBavard.add(validerMessagerie);
 
-		
         contentPaneMessage.setLayout(new BoxLayout(contentPaneMessage, BoxLayout.Y_AXIS));
 
 
@@ -175,8 +179,28 @@ public class Fenetre extends JFrame {
 		this.contentPaneMessage.add(message);
 	}
 
-	public void setBatiment(Batiment bat) {
-		this.bat = bat;
+	public Batiment getBatiment() {
+		return this.bat;
+	}
+
+	public JCheckBox getEstConnecteCheckBox() {
+		return estConnecteCheckBox;
+	}
+
+	public void addChoixBavardCombo(String prenomBavard){
+		this.choixBavardCombo.addItem(prenomBavard);
+		this.prenomBavards.add(prenomBavard);
+	}
+
+	public String getPrenomBavardSelectionne() {
+		return (String) this.choixBavardCombo.getSelectedItem();
+	}
+
+
+	public void mettreAJourEtatCheckbox(Bavard bavard) {
+		if (bavard != null) {
+			estConnecteCheckBox.setSelected(bavard.getConnected());
+		}
 	}
 
 }

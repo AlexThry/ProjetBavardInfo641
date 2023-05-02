@@ -24,7 +24,6 @@ public class Batiment {
             newBavard.addListener(this.concierge);
             bavards.add(newBavard);
             newBavard.souscrire(this.concierge);
-
             return "Le Bavard à été ajouté";
         } else {
             return "Le Bavard existe déjà";

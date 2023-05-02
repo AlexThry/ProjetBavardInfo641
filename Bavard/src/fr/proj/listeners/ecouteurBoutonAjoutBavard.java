@@ -1,8 +1,10 @@
 package fr.proj.listeners;
 import fr.proj.Bavard;
+import fr.proj.Fenetre;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -12,11 +14,13 @@ public class ecouteurBoutonAjoutBavard implements ActionListener {
     private JTextField nomTextField;
     private JTextField prenomTextField;
     private JTextField dateTextField;
+    private Fenetre fenetre;
 
-    public ecouteurBoutonAjoutBavard(JTextField nomTextField, JTextField prenomTextField, JTextField dateTextField) {
+    public ecouteurBoutonAjoutBavard(JTextField nomTextField, JTextField prenomTextField, JTextField dateTextField, Fenetre fenetre) {
         this.nomTextField = nomTextField;
         this.prenomTextField = prenomTextField;
         this.dateTextField = dateTextField;
+        this.fenetre= fenetre;
     }
 
     @Override
@@ -27,7 +31,10 @@ public class ecouteurBoutonAjoutBavard implements ActionListener {
         String dateNaissance = dateTextField.getText();
 
         // Créer un nouveau Bavard avec les valeurs récupérées
-        Bavard nouveauBavard = new Bavard(nom, prenom, dateNaissance);
+        fenetre.getBatiment().createBavard(nom, prenom, dateNaissance);
+
+        // Ajouter des éléments au comboBox
+        fenetre.addChoixBavardCombo(prenom);
     }
 
 }

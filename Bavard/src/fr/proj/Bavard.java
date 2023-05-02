@@ -86,4 +86,16 @@ public class Bavard implements PapotageListener {
          */
         concierge.addListener(this);
     }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setConnected(boolean connected) {
+        this.connected = connected;
+    }
+    public boolean getConnected() {
+        return connected;
+    }
+
 }
