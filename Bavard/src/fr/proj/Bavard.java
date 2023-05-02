@@ -73,7 +73,7 @@ public class Bavard implements PapotageListener {
 
 
 
-    public void addListener(Concierge concierge) {
+    public void addListener(PapotageListener concierge) {
         /*
         * Permet d'ajouter un concierge dans la liste des listeners
          */

@@ -1,5 +1,7 @@
 package fr.proj;
 
+import fr.proj.window.MessagePanel;
+
 import java.awt.EventQueue;
 
 import javax.swing.*;
@@ -12,23 +14,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.CardLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Scrollbar;
-import java.awt.ScrollPane;
-import java.awt.Point;
-import java.awt.Label;
-import java.awt.Rectangle;
 
 public class Fenetre extends JFrame {
 
 	private JPanel contentPane;
+	private JPanel contentPaneMessage = new JPanel();
+
 	private JTextField nomConciergeTextField;
 	private JTextField nomTextField;
 	private JTextField prenomTextField;
 	private JTextField dateTextField;
 	private JTextField textField_1;
+
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -169,43 +166,37 @@ public class Fenetre extends JFrame {
 		});
 		choixBavard.add(validerMessagerie);
 		
-		JPanel message1 = new JPanel();
-		// messagerieTab.add(message1, BorderLayout.CENTER);
-		message1.setLayout(new GridLayout(0, 2, 0, 0));
+//		JPanel message1 = new JPanel();
+//		message1.setLayout(new GridLayout(0, 2, 0, 0));
+//
+//		JLabel senderLabel = new JLabel("Sender");
+//		message1.add(senderLabel);
+//
+//		JLabel varSenderLabel = new JLabel("Alexis");
+//		varSenderLabel.setForeground(Color.RED);
+//		message1.add(varSenderLabel);
+//
+//		JLabel subjectLabel = new JLabel("Subject");
+//		message1.add(subjectLabel);
+//
+//		JLabel varSubjectLabel = new JLabel("Subject");
+//		varSubjectLabel.setForeground(Color.RED);
+//		message1.add(varSubjectLabel);
 		
-		JLabel senderLabel = new JLabel("Sender");
-		message1.add(senderLabel);
-		
-		JLabel varSenderLabel = new JLabel("Alexis");
-		varSenderLabel.setForeground(Color.RED);
-		message1.add(varSenderLabel);
-		
-		JLabel subjectLabel = new JLabel("Subject");
-		message1.add(subjectLabel);
-		
-		JLabel varSubjectLabel = new JLabel("Subject");
-		varSubjectLabel.setForeground(Color.RED);
-		message1.add(varSubjectLabel);
-		//message1.setPreferredSize(new Dimension(350, 150));
-		
-		
-		JPanel contentPane = new JPanel();
-        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
-        contentPane.add(message1);
-        
-        Label contentLabel = new Label("Content");
-        message1.add(contentLabel);
-        
-        JTextArea varContentTextArea = new JTextArea();
-        varContentTextArea.setWrapStyleWord(true);
-        varContentTextArea.setText("eycgvuieo yé&eboiyb aciybeapoic aeciyhbaeipo aeiuybhzaepiç aipudcbyxapiu");
-        varContentTextArea.setLineWrap(true);
-        message1.add(varContentTextArea);
+        contentPaneMessage.setLayout(new BoxLayout(contentPaneMessage, BoxLayout.Y_AXIS));
+
+
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportView(contentPane);
+        scrollPane.setViewportView(contentPaneMessage);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setPreferredSize(new Dimension(350, 200));
 		messagerieTab.add(scrollPane, BorderLayout.CENTER);
+	}
+
+
+	public void addMessage(String subject, String sender, String content) {
+		MessagePanel message = new MessagePanel(subject, sender, content);
+		this.contentPaneMessage.add(message);
 	}
 
 }
