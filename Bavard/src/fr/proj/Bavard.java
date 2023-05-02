@@ -109,6 +109,7 @@ public class Bavard implements PapotageListener {
         return nom;
     }
 
+
     public String getDateDeNaissance() {
         return dateDeNaissance;
     }

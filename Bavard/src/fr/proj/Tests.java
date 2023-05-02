@@ -23,7 +23,6 @@ public class Tests {
         bat.connectBavard(bat.getBavards().get(1));
         bat.addInteret(bat.getBavards().get(0));
         bat.addInteret(bat.getBavards().get(1));
-        bat.sendMessage("Thierry", "Alexis", "18/03/2002", "Td de Maths", "Salut Carlyne, aurais-tu l'obligence de m'envoyer le td de maths STP ? n");
     }
 
 }

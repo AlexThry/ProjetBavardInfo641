@@ -59,8 +59,7 @@ public class Batiment {
          }
     }
 
-    public void sendMessage(String senderLastName, String senderFirstName, String senderBirthDate, String subject, String content) {
-        Bavard sender = new Bavard(senderLastName, senderFirstName, senderBirthDate);
+    public void sendMessage(Bavard sender, String subject, String content) {
         for (PapotageListener bavard: this.concierge.getBavardsListeners()) {
             if (sender.equals(bavard)) {
                 bavard.emitMessage(subject, content);

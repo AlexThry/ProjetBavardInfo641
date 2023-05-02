@@ -1,5 +1,6 @@
 package fr.proj;
 
+import fr.proj.listeners.EcouteurBoutonAjoutMessage;
 import fr.proj.listeners.EcouteurBoutonValiderMessagerie;
 import fr.proj.listeners.ecouteurBoutonAjoutBavard;
 import fr.proj.listeners.ecouteurBoutonConnexion;
@@ -18,12 +19,12 @@ public class Fenetre extends JFrame {
 	private Batiment bat;
 	private JPanel contentPane;
 	private JPanel contentPaneMessage = new JPanel();
-
+	private JComboBox<Bavard> choixBavardMessagerieComboBox;
 	private JTextField nomConciergeTextField;
 	private JTextField nomTextField;
 	private JTextField prenomTextField;
 	private JTextField dateTextField;
-	private JTextField textField_1;
+	private JTextField sujetTextField;
 	private JComboBox choixBavardCombo;
 	private String prenomBavardSelectionne;
 	private ArrayList<String> prenomBavards = new ArrayList<>();
@@ -45,12 +46,6 @@ public class Fenetre extends JFrame {
 
 	public Fenetre() {
 		this.bat = new Batiment("Concierge");
-		this.bat.createBavard("Thierry", "Alexis", "18/03/2002");
-		this.bat.createBavard("Thierry", "Alexis2", "18/03/2002");
-//		this.bat.getBavards().get(1).connect();
-		this.bat.getBavards().get(0).emitMessage("sujet", "corps");
-		this.bat.getBavards().get(0).emitMessage("sujet2", "corps");
-		this.bat.getBavards().get(1).emitMessage("sujet3", "corps");
 		setMinimumSize(new Dimension(500, 350));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 350);
@@ -131,18 +126,34 @@ public class Fenetre extends JFrame {
 		// Section pour établir le message
 		JLabel sujetLabel = new JLabel("Sujet : ");
 		panel.add(sujetLabel);
-
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		panel.add(textField_1);
-
+//<<<<<<< HEAD
+//
+//		textField_1 = new JTextField();
+//		textField_1.setColumns(10);
+//		panel.add(textField_1);
+//
+//		JLabel corpsLabel = new JLabel("Corps : ");
+//		panel.add(corpsLabel);
+//
+//		JTextPane corpsTextPane = new JTextPane();
+//		panel.add(corpsTextPane);
+//=======
+		
+		sujetTextField = new JTextField();
+		sujetTextField.setColumns(10);
+		panel.add(sujetTextField);
+		
 		JLabel corpsLabel = new JLabel("Corps : ");
 		panel.add(corpsLabel);
-
-		JTextPane corpsTextPane = new JTextPane();
-		panel.add(corpsTextPane);
+		
+		JTextArea corpsTextArea = new JTextArea();
+		corpsTextArea.setLineWrap(true);
+		panel.add(corpsTextArea);
+//>>>>>>> Alex
 
 		JButton sendMessageButton = new JButton("Envoyer");
+		EcouteurBoutonAjoutMessage ecouteurBoutonAjoutMessage = new EcouteurBoutonAjoutMessage(sujetTextField, corpsTextArea, choixBavardCombo, this);
+		sendMessageButton.addActionListener(ecouteurBoutonAjoutMessage);
 		gestionBavardPanel.add(sendMessageButton, BorderLayout.SOUTH);
 
 		JPanel messagerieTab = new JPanel();
@@ -154,8 +165,13 @@ public class Fenetre extends JFrame {
 
 		JLabel choixBavardMessagerieLabel = new JLabel("Choix bavard : ");
 		choixBavard.add(choixBavardMessagerieLabel);
+//<<<<<<< HEAD
 
-		JComboBox choixBavardMessagerieComboBox = new JComboBox();
+//		JComboBox choixBavardMessagerieComboBox = new JComboBox();
+//=======
+		
+		this.choixBavardMessagerieComboBox = new JComboBox();
+//>>>>>>> Alex
 		choixBavardMessagerieComboBox.setPreferredSize(new Dimension(150, 30));
 		choixBavardMessagerieComboBox.setModel(new DefaultComboBoxModel(this.bat.getBavards().toArray(new Bavard[0])));
 		choixBavard.add(choixBavardMessagerieComboBox);
@@ -182,13 +198,11 @@ public class Fenetre extends JFrame {
 		MessagePanel message = new MessagePanel(subject, sender, content);
 		this.contentPaneMessage.add(message);
 		this.contentPaneMessage.revalidate();
-//		this.contentPaneMessage.repaint();
 	}
 
 	public void removeMessages() {
 		this.contentPaneMessage.removeAll();
 		this.contentPaneMessage.revalidate();
-//		this.contentPaneMessage.repaint();
 
 	}
 
@@ -201,4 +215,20 @@ public class Fenetre extends JFrame {
 		this.prenomBavards.add(prenomBavard);
 	}
 
+//<<<<<<< HEAD
+//=======
+	public String getPrenomBavardSelectionne() {
+		return (String) this.choixBavardCombo.getSelectedItem();
+	}
+
+
+
+	public JComboBox<Bavard> getChoixBavardComboMessage() {
+		return this.choixBavardMessagerieComboBox;
+	}
+
+
+
+
+//>>>>>>> Alex
 }

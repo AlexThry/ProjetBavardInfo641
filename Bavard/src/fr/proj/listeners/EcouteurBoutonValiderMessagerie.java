@@ -24,9 +24,11 @@ public class EcouteurBoutonValiderMessagerie implements ActionListener {
         System.out.println(selected);
         this.fenetre.removeMessages();
         System.out.println(2);
-        for (Message message: selected.getMessagesList()) {
-            System.out.println(message);
-            fenetre.addMessage(message.getSubject(), message.getSender(), message.getContent());
+        if (selected.getMessagesList().size() > 0) {
+            for (Message message: selected.getMessagesList()) {
+                System.out.println(message);
+                fenetre.addMessage(message.getSubject(), message.getSender(), message.getContent());
+            }
         }
     }
 }
