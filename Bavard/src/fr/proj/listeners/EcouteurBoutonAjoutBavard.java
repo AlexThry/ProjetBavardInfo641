@@ -1,22 +1,19 @@
 package fr.proj.listeners;
-import fr.proj.Bavard;
 import fr.proj.Fenetre;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JTextField;
 
-public class ecouteurBoutonAjoutBavard implements ActionListener {
+public class EcouteurBoutonAjoutBavard implements ActionListener {
 
     private JTextField nomTextField;
     private JTextField prenomTextField;
     private JTextField dateTextField;
     private Fenetre fenetre;
 
-    public ecouteurBoutonAjoutBavard(JTextField nomTextField, JTextField prenomTextField, JTextField dateTextField, Fenetre fenetre) {
+    public EcouteurBoutonAjoutBavard(JTextField nomTextField, JTextField prenomTextField, JTextField dateTextField, Fenetre fenetre) {
         this.nomTextField = nomTextField;
         this.prenomTextField = prenomTextField;
         this.dateTextField = dateTextField;

@@ -8,11 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ecouteurValideBavard implements ActionListener {
+public class EcouteurValideBavard implements ActionListener {
     private Fenetre fenetre;
     private JComboBox choixBavardCombo;
     private JButton connexionBavard;
-    public ecouteurValideBavard(Fenetre fenetre,JButton connexionBavard, JComboBox choixBavardCombo) {
+    public EcouteurValideBavard(Fenetre fenetre, JButton connexionBavard, JComboBox choixBavardCombo) {
         this.fenetre= fenetre;
         this.connexionBavard = connexionBavard;
         this.choixBavardCombo = choixBavardCombo;

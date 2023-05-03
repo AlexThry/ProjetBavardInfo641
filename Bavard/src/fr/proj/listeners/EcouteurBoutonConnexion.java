@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-public class ecouteurBoutonConnexion implements ActionListener {
+public class EcouteurBoutonConnexion implements ActionListener {
     private JComboBox choixBavardCombo;
     private Fenetre fenetre;
     private JButton connexionBavard;
-    public ecouteurBoutonConnexion(JComboBox choixBavardCombo, Fenetre fenetre, JButton connexionBavard) {
+    public EcouteurBoutonConnexion(JComboBox choixBavardCombo, Fenetre fenetre, JButton connexionBavard) {
         this.choixBavardCombo=choixBavardCombo;
         this.fenetre = fenetre;
         this.connexionBavard = connexionBavard;
