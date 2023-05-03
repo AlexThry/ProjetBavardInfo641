@@ -1,6 +1,7 @@
 package fr.proj.listeners;
 import fr.proj.Bavard;
 import fr.proj.Fenetre;
+import fr.proj.IsOnLineListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,10 +36,19 @@ public class ecouteurBoutonConnexion implements ActionListener {
         // Modifier la connexion
         if (choix.getConnected()==true){
             fenetre.getBatiment().connectBavard(choix, false);
+            ArrayList<IsOnLineListener> bavardsConnectés= fenetre.getBatiment().getBavardsConnectés();
+            bavardsConnectés.remove(choix);
+            fenetre.getBatiment().setBavardsConnectés(bavardsConnectés);
             connexionBavard.setText("Déconnecté");
+            this.fenetre.removeBavardConnecte(choix.getPrenom() + " " + choix.getNom() + " " + choix.getDateDeNaissance());
         } else {
             fenetre.getBatiment().connectBavard(choix, true);
+            ArrayList<IsOnLineListener> bavardsConnectés= fenetre.getBatiment().getBavardsConnectés();
+            bavardsConnectés.add(choix);
+            fenetre.getBatiment().setBavardsConnectés(bavardsConnectés);
             connexionBavard.setText("Connecté");
+            this.fenetre.addBavardConnecte(choix.getPrenom() + " " + choix.getNom() + " " + choix.getDateDeNaissance());
+
         }
     }
 

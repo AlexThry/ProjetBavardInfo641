@@ -9,7 +9,6 @@ public class Bavard implements PapotageListener, IsOnLineListener {
     private ArrayList<PapotageListener> concierges = new ArrayList<>();
     private ArrayList<Message> messagesList = new ArrayList<>();
     private boolean connected = false;
-
     private ArrayList<IsOnLineListener> bavardsOnLine = new ArrayList<>();
 
 
@@ -133,5 +132,8 @@ public class Bavard implements PapotageListener, IsOnLineListener {
         return dateDeNaissance;
     }
 
+    public ArrayList<IsOnLineListener> getBavardsOnLine() {
+        return bavardsOnLine;
+    }
 
 }

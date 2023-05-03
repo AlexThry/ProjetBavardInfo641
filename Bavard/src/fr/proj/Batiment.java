@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Batiment {
     private ArrayList<Bavard> bavards = new ArrayList<>();
     private Concierge concierge;
+    private ArrayList<IsOnLineListener> bavardsConnectés = new ArrayList<>();
 
     public Batiment(String nomConcierge) {
         this.concierge = new Concierge(nomConcierge);
@@ -42,6 +43,7 @@ public class Batiment {
                 for (Bavard bavard2: this.bavards) {
                     bavard2.isOnlineAlert(onLineBavardEvent, value);
                 }
+                this.bavardsConnectés = bavard.getBavardsOnLine();
             }
         }
     }
@@ -72,5 +74,12 @@ public class Batiment {
 
     public Concierge getConcierge() {
         return concierge;
+    }
+
+    public ArrayList<IsOnLineListener> getBavardsConnectés() {
+        return bavardsConnectés;
+    }
+    public void setBavardsConnectés(ArrayList<IsOnLineListener> bavardsConnectés) {
+        this.bavardsConnectés = bavardsConnectés;
     }
 }

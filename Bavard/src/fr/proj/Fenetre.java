@@ -28,6 +28,8 @@ public class Fenetre extends JFrame {
 	private JComboBox choixBavardCombo;
 	private String prenomBavardSelectionne;
 	private ArrayList<String> prenomBavards = new ArrayList<>();
+	private JList<String> bavardsConnectés;
+	private ArrayList<IsOnLineListener> listeBavardsConnectes;
 
 
 	public static void main(String[] args) {
@@ -47,7 +49,7 @@ public class Fenetre extends JFrame {
 	public Fenetre() {
 		// Création du batiment associé à la fenetre
 		this.bat = new Batiment("Concierge");
-
+		this.listeBavardsConnectes = this.getBatiment().getBavardsConnectés();
 		/********* Création de la fenêtre *********/
 		setMinimumSize(new Dimension(500, 350));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -197,6 +199,12 @@ public class Fenetre extends JFrame {
 		messagerieTab.add(scrollPane, BorderLayout.CENTER);
 
 
+		/********* Section qui montre les bavards connectés *********/
+		JPanel panelConnectes = new JPanel();
+		tabbedPane.addTab("Bavards connectés", panelConnectes);
+		this.bavardsConnectés = new JList<>(new DefaultListModel<>());
+		panelConnectes.add(this.bavardsConnectés);
+
 	}
 
 
@@ -233,8 +241,17 @@ public class Fenetre extends JFrame {
 		return this.choixBavardMessagerieComboBox;
 	}
 
+	public JList<String> getBavardsConnectés() {
+		return bavardsConnectés;
+	}
 
+	public void addBavardConnecte(String prenom) {
+		DefaultListModel<String> model = (DefaultListModel<String>) this.bavardsConnectés.getModel();
+		model.addElement(prenom);
+	}
 
-
-//>>>>>>> Alex
+	public void removeBavardConnecte(String prenom) {
+		DefaultListModel<String> model = (DefaultListModel<String>) this.bavardsConnectés.getModel();
+		model.removeElement(prenom);
+	}
 }
