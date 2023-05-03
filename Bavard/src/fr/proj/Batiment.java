@@ -28,21 +28,20 @@ public class Batiment {
         } else {
             return "Le Bavard existe déjà";
         }
+
     }
 
 
-    public void deleteBavard(Bavard bavard) {
-        for (Bavard bavard1: this.bavards) {
-            if (bavard.equals(bavard1)) {
-                this.bavards.remove(bavard);
-            }
-        }
-    }
 
-    public void connectBavard(Bavard bavard) {
+
+    public void connectBavard(Bavard bavard, Boolean value) {
         for (Bavard bavard1: this.bavards) {
             if (bavard.equals(bavard1)) {
-                bavard.connect();
+                bavard.setConnected(value);
+                OnLineBavardEvent onLineBavardEvent = new OnLineBavardEvent(bavard, value);
+                for (Bavard bavard2: this.bavards) {
+                    bavard2.isOnlineAlert(onLineBavardEvent, value);
+                }
             }
         }
     }

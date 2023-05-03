@@ -36,7 +36,7 @@ public class ecouteurBoutonAjoutBavard implements ActionListener {
         // Ajouter des éléments au comboBox
         fenetre.addChoixBavardCombo(prenom);
         int size = fenetre.getBatiment().getBavards().size();
-        fenetre.getChoixBavardComboMessage().addItem(fenetre.getBatiment().getBavards().get(size-1));
+        fenetre.getChoixBavardComboMessage().addItem(fenetre.getBatiment().getBavards().get(size-1).getPrenom());
 
     }
 

@@ -35,4 +35,8 @@ public class Concierge implements PapotageListener {
     public boolean isConnected() {
         return true;
     }
+
+    public void sendOnline(OnLineBavardEvent onLineBavardEvent) {
+
+    }
 }

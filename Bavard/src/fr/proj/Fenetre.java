@@ -19,7 +19,7 @@ public class Fenetre extends JFrame {
 	private Batiment bat;
 	private JPanel contentPane;
 	private JPanel contentPaneMessage = new JPanel();
-	private JComboBox<Bavard> choixBavardMessagerieComboBox;
+	private JComboBox<String> choixBavardMessagerieComboBox;
 	private JTextField nomConciergeTextField;
 	private JTextField nomTextField;
 	private JTextField prenomTextField;
@@ -45,28 +45,37 @@ public class Fenetre extends JFrame {
 
 
 	public Fenetre() {
+		// Création du batiment associé à la fenetre
 		this.bat = new Batiment("Concierge");
+
+		/********* Création de la fenêtre *********/
 		setMinimumSize(new Dimension(500, 350));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
 		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
+
+		// Ajout des onglets
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setPreferredSize(new Dimension(600, 350));
 		contentPane.add(tabbedPane);
+
+		/********* Onglet gestion batiment *********/
+
 
 		JPanel gestionBatiment = new JPanel();
 		tabbedPane.addTab("Gestion Batiment", null, gestionBatiment, null);
 		gestionBatiment.setLayout(new BorderLayout(0, 0));
 
+		/********* Création de bavard *********/
+
 		JPanel creationBavardPanel = new JPanel();
 		gestionBatiment.add(creationBavardPanel, BorderLayout.NORTH);
-		creationBavardPanel.setLayout(new GridLayout(0, 3, 0, 0));
 
+		creationBavardPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		JLabel creationBavardLabel = new JLabel("Création Bavard");
 		creationBavardPanel.add(creationBavardLabel);
 
@@ -96,6 +105,9 @@ public class Fenetre extends JFrame {
 		ecouteurBoutonAjoutBavard creerBavardListener = new ecouteurBoutonAjoutBavard(nomTextField, prenomTextField, dateTextField, this);
 		creerBavardButton.addActionListener(creerBavardListener);
 
+		/********* Gestion de bavard *********/
+
+
 		JPanel gestionBavardPanel = new JPanel();
 		gestionBatiment.add(gestionBavardPanel, BorderLayout.SOUTH);
 		gestionBavardPanel.setLayout(new BorderLayout(0, 0));
@@ -112,7 +124,8 @@ public class Fenetre extends JFrame {
 		panel.add(validerChoixBavard);
 
 
-		// Section pour établir la connection entre un bavard et le concierge
+		/********* Connexion du bavard *********/
+
 		JLabel connexion= new JLabel("Connecté:");
 		panel.add(connexion);
 
@@ -123,21 +136,11 @@ public class Fenetre extends JFrame {
 		ecouteurValideBavard validerBavard = new ecouteurValideBavard(this,connexionBavard,choixBavardCombo);
 		validerChoixBavard.addActionListener(validerBavard);
 
-		// Section pour établir le message
+		/********* Création de message *********/
+
 		JLabel sujetLabel = new JLabel("Sujet : ");
 		panel.add(sujetLabel);
-//<<<<<<< HEAD
-//
-//		textField_1 = new JTextField();
-//		textField_1.setColumns(10);
-//		panel.add(textField_1);
-//
-//		JLabel corpsLabel = new JLabel("Corps : ");
-//		panel.add(corpsLabel);
-//
-//		JTextPane corpsTextPane = new JTextPane();
-//		panel.add(corpsTextPane);
-//=======
+
 		
 		sujetTextField = new JTextField();
 		sujetTextField.setColumns(10);
@@ -149,31 +152,33 @@ public class Fenetre extends JFrame {
 		JTextArea corpsTextArea = new JTextArea();
 		corpsTextArea.setLineWrap(true);
 		panel.add(corpsTextArea);
-//>>>>>>> Alex
 
 		JButton sendMessageButton = new JButton("Envoyer");
 		EcouteurBoutonAjoutMessage ecouteurBoutonAjoutMessage = new EcouteurBoutonAjoutMessage(sujetTextField, corpsTextArea, choixBavardCombo, this);
 		sendMessageButton.addActionListener(ecouteurBoutonAjoutMessage);
 		gestionBavardPanel.add(sendMessageButton, BorderLayout.SOUTH);
 
+		/********* Onglet messagerie *********/
+
 		JPanel messagerieTab = new JPanel();
 		tabbedPane.addTab("Messagerie", null, messagerieTab, null);
 		messagerieTab.setLayout(new BorderLayout(0, 0));
+
+		/********* Choix du bavard *********/
+
 
 		JPanel choixBavard = new JPanel();
 		messagerieTab.add(choixBavard, BorderLayout.NORTH);
 
 		JLabel choixBavardMessagerieLabel = new JLabel("Choix bavard : ");
 		choixBavard.add(choixBavardMessagerieLabel);
-//<<<<<<< HEAD
-
-//		JComboBox choixBavardMessagerieComboBox = new JComboBox();
-//=======
 		
 		this.choixBavardMessagerieComboBox = new JComboBox();
-//>>>>>>> Alex
-		choixBavardMessagerieComboBox.setPreferredSize(new Dimension(150, 30));
-		choixBavardMessagerieComboBox.setModel(new DefaultComboBoxModel(this.bat.getBavards().toArray(new Bavard[0])));
+		this.choixBavardMessagerieComboBox.setPreferredSize(new Dimension(150, 30));
+		// récupération des noms et prenoms des bavards
+
+
+
 		choixBavard.add(choixBavardMessagerieComboBox);
 
 		JButton validerMessagerie = new JButton("Valider");
@@ -183,8 +188,9 @@ public class Fenetre extends JFrame {
 
         contentPaneMessage.setLayout(new BoxLayout(contentPaneMessage, BoxLayout.Y_AXIS));
 
+		/********* Section qui montre les messages *********/
 
-        JScrollPane scrollPane = new JScrollPane();
+		JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(contentPaneMessage);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setPreferredSize(new Dimension(350, 200));
@@ -223,7 +229,7 @@ public class Fenetre extends JFrame {
 
 
 
-	public JComboBox<Bavard> getChoixBavardComboMessage() {
+	public JComboBox<String> getChoixBavardComboMessage() {
 		return this.choixBavardMessagerieComboBox;
 	}
 

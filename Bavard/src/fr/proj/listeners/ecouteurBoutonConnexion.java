@@ -14,7 +14,7 @@ public class ecouteurBoutonConnexion implements ActionListener {
     private JButton connexionBavard;
     public ecouteurBoutonConnexion(JComboBox choixBavardCombo, Fenetre fenetre, JButton connexionBavard) {
         this.choixBavardCombo=choixBavardCombo;
-        this.fenetre= fenetre;
+        this.fenetre = fenetre;
         this.connexionBavard = connexionBavard;
     }
 
@@ -34,10 +34,10 @@ public class ecouteurBoutonConnexion implements ActionListener {
 
         // Modifier la connexion
         if (choix.getConnected()==true){
-            choix.setConnected(false);
+            fenetre.getBatiment().connectBavard(choix, false);
             connexionBavard.setText("Déconnecté");
-        }else {
-            choix.setConnected(true);
+        } else {
+            fenetre.getBatiment().connectBavard(choix, true);
             connexionBavard.setText("Connecté");
         }
     }

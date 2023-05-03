@@ -9,11 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class EcouteurBoutonValiderMessagerie implements ActionListener {
-    private JComboBox<Bavard> comboBox;
+    private JComboBox<String> comboBox;
     private Bavard selected;
     private Fenetre fenetre;
 
-    public EcouteurBoutonValiderMessagerie(JComboBox<Bavard> bavardJComboBox, Fenetre fenetre) {
+    public EcouteurBoutonValiderMessagerie(JComboBox<String> bavardJComboBox, Fenetre fenetre) {
         this.comboBox = bavardJComboBox;
         this.fenetre = fenetre;
     }

@@ -8,4 +8,5 @@ public interface PapotageListener {
     public void emitMessage(String sujet, String corps);
 
     public boolean isConnected();
+
 }

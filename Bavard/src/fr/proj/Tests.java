@@ -16,13 +16,6 @@ public class Tests {
 //        alex.emitMessage("Hello", "Je suis alex");
 //        fred.emitMessage("Je me presente", "Fred");
 
-        Batiment bat = new Batiment("Manuel");
-        bat.createBavard("Thierry", "Alexis", "18/03/2002");
-        bat.createBavard("Barrachin", "Carlyne", "19/02/2002");
-        bat.connectBavard(bat.getBavards().get(0));
-        bat.connectBavard(bat.getBavards().get(1));
-        bat.addInteret(bat.getBavards().get(0));
-        bat.addInteret(bat.getBavards().get(1));
     }
 
 }
