@@ -23,11 +23,15 @@ public class EcouteurBoutonAjoutMessage implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         // Récupérer les valeurs des champs nom, prénom et date de naissance
-        Bavard bavard = fenetre.getBatiment().getBavards().get(comboBox.getSelectedIndex());
-        System.out.println(bavard.getMessagesList());
-        fenetre.getBatiment().sendMessage(bavard, sujet.getText(), corps.getText());
-
+        if ((fenetre.getBatiment().getBavards()).size() == 0){
+            JOptionPane.showMessageDialog(fenetre, "Vous devez créer un utilisateur pour pouvoir envoyer un message...", "Erreur", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Bavard bavard = fenetre.getBatiment().getBavards().get(comboBox.getSelectedIndex());
+            fenetre.getBatiment().sendMessage(bavard, sujet.getText(), corps.getText());
+            sujet.setText("");
+            corps.setText("");
+        }
     }
-
 }

@@ -32,12 +32,18 @@ public class EcouteurValideBavard implements ActionListener {
             }
         }
 
+        if (choix == null){
+            JOptionPane.showMessageDialog(fenetre,"Vous devez créer un utilisateur...","Erreur",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         // Modifier la connexion
         if (choix.getConnected() == true) {
-            connexionBavard.setText("Connecté");
+            connexionBavard.setText("Se déconnecter");
         } else {
-            connexionBavard.setText("Déconnecté");
+            connexionBavard.setText("Se connecter");
         }
+
     }
 }
 

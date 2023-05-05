@@ -4,7 +4,7 @@ import fr.proj.Fenetre;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class EcouteurBoutonAjoutBavard implements ActionListener {
 
@@ -28,12 +28,23 @@ public class EcouteurBoutonAjoutBavard implements ActionListener {
         String dateNaissance = dateTextField.getText();
 
         // Créer un nouveau Bavard avec les valeurs récupérées
-        fenetre.getBatiment().createBavard(nom, prenom, dateNaissance);
+        if (!nom.isEmpty() && !prenom.isEmpty() && !dateNaissance.equals("jj/mm/aaaa")) {
+            fenetre.getBatiment().createBavard(nom, prenom, dateNaissance);
+            JOptionPane.showMessageDialog(fenetre, "Vous venez d'ajouter un bavard !", "Succès", JOptionPane.INFORMATION_MESSAGE);
 
-        // Ajouter des éléments au comboBox
-        fenetre.addChoixBavardCombo(prenom);
-        int size = fenetre.getBatiment().getBavards().size();
-        fenetre.getChoixBavardComboMessage().addItem(fenetre.getBatiment().getBavards().get(size-1).getPrenom());
+            //etat initial remis
+            nomTextField.setText("");
+            prenomTextField.setText("");
+            dateTextField.setText("jj/mm/aaaa");
+
+            // Ajouter des éléments au comboBox
+            fenetre.addChoixBavardCombo(prenom);
+            int size = fenetre.getBatiment().getBavards().size();
+            fenetre.getChoixBavardComboMessage().addItem(fenetre.getBatiment().getBavards().get(size - 1).getPrenom());
+
+        }else{
+            JOptionPane.showMessageDialog(fenetre, "Veuillez renseigner tous les champs...", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
 
     }
 
