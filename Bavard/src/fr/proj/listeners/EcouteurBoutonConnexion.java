@@ -45,14 +45,14 @@ public class EcouteurBoutonConnexion implements ActionListener {
             bavardsConnectés.remove(choix);
             fenetre.getBatiment().setBavardsConnectés(bavardsConnectés);
             connexionBavard.setText("Déconnecté");
-            this.fenetre.removeBavardConnecte(choix.getPrenom() + " " + choix.getNom() + " " + choix.getDateDeNaissance());
+            this.fenetre.removeBavardConnecte(choix);
         } else {
             fenetre.getBatiment().connectBavard(choix, true);
             ArrayList<IsOnLineListener> bavardsConnectés= fenetre.getBatiment().getBavardsConnectés();
             bavardsConnectés.add(choix);
             fenetre.getBatiment().setBavardsConnectés(bavardsConnectés);
             connexionBavard.setText("Connecté");
-            this.fenetre.addBavardConnecte(choix.getPrenom() + " " + choix.getNom() + " " + choix.getDateDeNaissance());
+            this.fenetre.addBavardConnecte(choix);
 
         }
     }
