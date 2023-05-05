@@ -33,6 +33,11 @@ public class EcouteurBoutonConnexion implements ActionListener {
             }
         }
 
+        if (choix == null){
+            JOptionPane.showMessageDialog(fenetre,"Vous devez créer un utilisateur !","Erreur",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         // Modifier la connexion
         if (choix.getConnected()==true){
             fenetre.getBatiment().connectBavard(choix, false);
