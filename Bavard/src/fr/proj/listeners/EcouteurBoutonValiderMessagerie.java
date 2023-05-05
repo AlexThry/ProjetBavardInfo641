@@ -20,10 +20,8 @@ public class EcouteurBoutonValiderMessagerie implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.selected = fenetre.getBatiment().getBavards().get(this.comboBox.getSelectedIndex());
-        System.out.println(selected);
         this.fenetre.removeMessages();
-        System.out.println(2);
+        this.selected = fenetre.getBatiment().getBavards().get(this.comboBox.getSelectedIndex());
         if (selected.getMessagesList().size() > 0) {
             for (Message message: selected.getMessagesList()) {
                 System.out.println(message);
