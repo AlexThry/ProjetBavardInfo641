@@ -12,22 +12,23 @@ public class MessagePanel extends JPanel {
     JLabel varThemeLabel = new JLabel();
     JTextArea varContentTextArea = new JTextArea();
 
-    public MessagePanel(String subject, String sender, String content) {
+    public MessagePanel(String subject, String sender, String content, String theme) {
         JPanel panel = new JPanel();
         panel.setLayout(grid);
         panel.setPreferredSize(new Dimension(430, 100)); // taille fixe du panneau
         panel.add(new JLabel("Sujet : "));
         varSubjectLabel.setText(subject);
-        this.add(varSubjectLabel);
-        this.add(new JLabel("Thème :"));
-        this.varThemeLabel.setText(theme);
-        this.add(varThemeLabel);
-        this.add(new JLabel("Envoyeur"));
+        panel.add(varSubjectLabel);
+        panel.add(new JLabel("Thème :"));
+        varThemeLabel.setText(theme);
+        panel.add(varThemeLabel);
+        panel.add(new JLabel("Envoyeur"));
         varSenderLabel.setText(sender);
         panel.add(varSenderLabel);
 
         panel.add(new JLabel("Contenu"));
         varContentTextArea.setText(content);
+        varContentTextArea.setEditable(false);
         varContentTextArea.setLineWrap(true);
         varContentTextArea.setPreferredSize(new Dimension(450, 250)); // taille fixe de la zone de texte
         varContentTextArea.setWrapStyleWord(true);
