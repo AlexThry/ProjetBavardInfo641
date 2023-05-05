@@ -234,6 +234,8 @@ public class Fenetre extends JFrame {
 		JPanel panelConnectes = new JPanel();
 		tabbedPane.addTab("Bavards connectés", panelConnectes);
 		this.bavardsConnectés = new JList<>(new DefaultListModel<>());
+		this.bavardsConnectés.setBackground(new Color(0xEEEEEE));
+		this.bavardsConnectés.setFont(new Font("Arial", Font.PLAIN, 16));
 		panelConnectes.add(this.bavardsConnectés);
 
 	}
@@ -268,13 +270,13 @@ public class Fenetre extends JFrame {
 		return bavardsConnectés;
 	}
 
-	public void addBavardConnecte(String prenom) {
+	public void addBavardConnecte(String value) {
 		DefaultListModel<String> model = (DefaultListModel<String>) this.bavardsConnectés.getModel();
-		model.addElement(prenom);
+		model.addElement(value);
 	}
 
-	public void removeBavardConnecte(String prenom) {
+	public void removeBavardConnecte(String value) {
 		DefaultListModel<String> model = (DefaultListModel<String>) this.bavardsConnectés.getModel();
-		model.removeElement(prenom);
+		model.removeElement(value);
 	}
 }

@@ -12,17 +12,28 @@ public class MessagePanel extends JPanel {
     JTextArea varContentTextArea = new JTextArea();
 
     public MessagePanel(String subject, String sender, String content) {
-        this.setLayout(grid);
-        this.add(new JLabel("Sujet : "));
+        JPanel panel = new JPanel();
+        panel.setLayout(grid);
+        panel.setPreferredSize(new Dimension(430, 100)); // taille fixe du panneau
+        panel.add(new JLabel("Sujet : "));
         varSubjectLabel.setText(subject);
-        this.add(varSubjectLabel);
-        this.add(new JLabel("Envoyeur"));
+        panel.add(varSubjectLabel);
+
+        panel.add(new JLabel("Envoyeur"));
         varSenderLabel.setText(sender);
-        this.add(varSenderLabel);
-        this.add(new JLabel("Contenu"));
+        panel.add(varSenderLabel);
+
+        panel.add(new JLabel("Contenu"));
         varContentTextArea.setText(content);
         varContentTextArea.setLineWrap(true);
-        this.add(varContentTextArea);
+        varContentTextArea.setPreferredSize(new Dimension(450, 250)); // taille fixe de la zone de texte
+        varContentTextArea.setWrapStyleWord(true);
+
+        JScrollPane scrollPane = new JScrollPane(varContentTextArea); // Ajout d'une barre de défilement
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        panel.add(scrollPane);
+        this.add(panel);
+
 
     }
 
