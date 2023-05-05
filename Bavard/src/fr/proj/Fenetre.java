@@ -29,7 +29,7 @@ public class Fenetre extends JFrame {
 	private JComboBox choixBavardCombo;
 	private String prenomBavardSelectionne;
 	private ArrayList<String> prenomBavards = new ArrayList<>();
-	private JList<String> bavardsConnectés;
+	private JList<Bavard> bavardsConnectés;
 	private ArrayList<IsOnLineListener> listeBavardsConnectes;
 
 
@@ -236,7 +236,39 @@ public class Fenetre extends JFrame {
 		this.bavardsConnectés = new JList<>(new DefaultListModel<>());
 		this.bavardsConnectés.setBackground(new Color(0xEEEEEE));
 		this.bavardsConnectés.setFont(new Font("Arial", Font.PLAIN, 16));
-		panelConnectes.add(this.bavardsConnectés);
+		this.bavardsConnectés.setCellRenderer(new ListCellRenderer<Bavard>() {
+			private JPanel panel = new JPanel(new FlowLayout());
+			private JLabel prenomLabel = new JLabel();
+			private JLabel nomLabel = new JLabel();
+			private JLabel imageLabel = new JLabel();
+			private ImageIcon imageIcon = new ImageIcon("Bavard/src/fr/proj/pastille-vert.png");
+
+			@Override
+			public Component getListCellRendererComponent(JList<? extends Bavard> list, Bavard value, int index, boolean isSelected, boolean cellHasFocus) {
+				Image img = imageIcon.getImage();
+				Image newImg = img.getScaledInstance(10, 10, Image.SCALE_SMOOTH);
+				imageIcon = new ImageIcon(newImg);
+				prenomLabel.setText(value.getPrenom());
+				nomLabel.setText(value.getNom());
+				// Affichage de l'image à côté du texte
+				imageLabel.setIcon(imageIcon);
+				// Ajout des composants à un panneau
+				panel.add(imageLabel);
+				panel.add(prenomLabel);
+				panel.add(nomLabel);
+				if (isSelected) {
+					panel.setBackground(list.getSelectionBackground());
+					prenomLabel.setForeground(list.getSelectionForeground());
+					nomLabel.setForeground(list.getSelectionForeground());
+				} else {
+					panel.setBackground(list.getBackground());
+					prenomLabel.setForeground(list.getForeground());
+					nomLabel.setForeground(list.getForeground());
+				}
+				return panel;
+			}
+		});
+		  panelConnectes.add(this.bavardsConnectés);
 
 	}
 
@@ -266,17 +298,26 @@ public class Fenetre extends JFrame {
 		return this.choixBavardMessagerieComboBox;
 	}
 
-	public JList<String> getBavardsConnectés() {
+	public JList<Bavard> getBavardsConnectés() {
 		return bavardsConnectés;
 	}
 
-	public void addBavardConnecte(String value) {
-		DefaultListModel<String> model = (DefaultListModel<String>) this.bavardsConnectés.getModel();
-		model.addElement(value);
+	public void addBavardConnecte(Bavard bavard) {
+		DefaultListModel<Bavard> model = (DefaultListModel<Bavard>) this.bavardsConnectés.getModel();
+		model.addElement(bavard);
 	}
 
-	public void removeBavardConnecte(String value) {
-		DefaultListModel<String> model = (DefaultListModel<String>) this.bavardsConnectés.getModel();
-		model.removeElement(value);
+	public void removeBavardConnecte(Bavard bavard) {
+		DefaultListModel<Bavard> model = (DefaultListModel<Bavard>) this.bavardsConnectés.getModel();
+		model.removeElement(bavard);
 	}
+//	public void addBavardConnecte(String value) {
+//		DefaultListModel<String> model = (DefaultListModel<String>) this.bavardsConnectés.getModel();
+//		model.addElement(value);
+//	}
+//
+//	public void removeBavardConnecte(String value) {
+//		DefaultListModel<String> model = (DefaultListModel<String>) this.bavardsConnectés.getModel();
+//		model.removeElement(value);
+//	}
 }
