@@ -10,24 +10,17 @@ public class Bavard implements PapotageListener, IsOnLineListener {
     private ArrayList<Message> messagesList = new ArrayList<>();
     private boolean connected = false;
     private ArrayList<IsOnLineListener> bavardsOnLine = new ArrayList<>();
+    private ArrayList<String> themesChoisis = new ArrayList<>();
 
-
-    public Bavard(String nom, String prenom, String dateDeNaissance) {
+    public Bavard(String nom, String prenom, String dateDeNaissance, ArrayList<String> themesChoisis) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateDeNaissance = dateDeNaissance;
+        this.themesChoisis = themesChoisis;
     }
 
     public boolean isConnected() {
         return connected;
-    }
-
-    public void connect() {
-        this.connected = true;
-    }
-
-    public void disconnect() {
-        this.connected = false;
     }
 
     @Override
@@ -39,6 +32,7 @@ public class Bavard implements PapotageListener, IsOnLineListener {
                 ", concierges=" + concierges +
                 ", messagesList=" + messagesList +
                 ", connected=" + connected +
+                ", themes=" + themesChoisis +
                 '}';
     }
 
@@ -49,8 +43,10 @@ public class Bavard implements PapotageListener, IsOnLineListener {
          */
 
         Bavard source = (Bavard) papotageEvent.getSource();
-        Message message = new Message(source.prenom, papotageEvent.getSujet(), papotageEvent.getCorps());
-        this.messagesList.add(message);
+        Message message = new Message(source.prenom, papotageEvent.getSujet(), papotageEvent.getCorps(),papotageEvent.getTheme());
+        if (this.themesChoisis.contains(message.getTheme())) {
+            this.messagesList.add(message);
+        }
     }
 
     @Override
@@ -63,15 +59,15 @@ public class Bavard implements PapotageListener, IsOnLineListener {
         }
     }
 
-    public void emitMessage(String sujet, String corps) {
+    public void emitMessage(String sujet, String corps,String theme) {
         /*
         * Permet à un bavard d'envoyer un message qui sera reçu par un concierge
          */
-        PapotageEvent papotageEvent = new PapotageEvent(this, sujet, corps);
+        PapotageEvent papotageEvent = new PapotageEvent(this, sujet, corps, theme);
         for (PapotageListener concierge: concierges) {
             concierge.nouveauPapotage(papotageEvent);
         }
-        this.messagesList.add(new Message(this.prenom, sujet, corps));
+        this.messagesList.add(new Message(this.prenom, sujet, corps,theme));
     }
     @Override
     public void isOnlineAlert(OnLineBavardEvent onLineBavardEvent, Boolean connected) {
@@ -88,7 +84,6 @@ public class Bavard implements PapotageListener, IsOnLineListener {
                 this.bavardsOnLine.remove(res);
             }
         }
-        System.out.println(this.bavardsOnLine);
     }
 
     public void addListener(PapotageListener concierge) {

@@ -11,10 +11,10 @@ public class Batiment {
         this.concierge = new Concierge(nomConcierge);
     }
 
-    public String createBavard(String nom, String prenom, String dateDeNaissance) {
+    public String createBavard(String nom, String prenom, String dateDeNaissance,ArrayList<String> themesBavard) {
         boolean res = true;
         int i = 0;
-        Bavard newBavard = new Bavard(nom, prenom, dateDeNaissance);
+        Bavard newBavard = new Bavard(nom, prenom, dateDeNaissance,themesBavard);
         while (res == true && i < this.bavards.size()) {
             if (newBavard.equals(this.bavards.get(i))) {
                 res = false;
@@ -60,10 +60,10 @@ public class Batiment {
          }
     }
 
-    public void sendMessage(Bavard sender, String subject, String content) {
+    public void sendMessage(Bavard sender, String subject, String content, String theme) {
         for (PapotageListener bavard: this.concierge.getBavardsListeners()) {
             if (sender.equals(bavard)) {
-                bavard.emitMessage(subject, content);
+                bavard.emitMessage(subject, content, theme);
             }
         }
     }

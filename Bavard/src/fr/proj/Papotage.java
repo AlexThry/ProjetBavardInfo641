@@ -3,8 +3,9 @@ package fr.proj;
 public class Papotage {
     private String sujet;
     private String corps;
+    private String theme;
 
-    public Papotage(String sujet, String corps) {
+    public Papotage(String sujet, String corps, String theme) {
         /*
         * Création d'un ragot
         * Param:
@@ -13,6 +14,7 @@ public class Papotage {
          */
         this.sujet = sujet;
         this.corps = corps;
+        this.theme = theme;
     }
 
     public String getSujet() {
@@ -23,5 +25,7 @@ public class Papotage {
         return this.corps;
     }
 
-
+    public String getTheme() {
+        return theme;
+    }
 }

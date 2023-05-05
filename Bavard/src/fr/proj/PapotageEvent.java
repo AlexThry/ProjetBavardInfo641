@@ -5,7 +5,7 @@ import java.util.EventObject;
 public class PapotageEvent extends EventObject {
     private Papotage papotage;
 
-    public PapotageEvent(Object source, String sujet, String corps) {
+    public PapotageEvent(Object source, String sujet, String corps, String theme) {
         /*
         * Un évènement de papotage
         * Params:
@@ -14,7 +14,7 @@ public class PapotageEvent extends EventObject {
         *   corps : String
          */
         super(source);
-        this.papotage = new Papotage(sujet, corps);
+        this.papotage = new Papotage(sujet, corps, theme);
     }
 
     public String getSujet() {
@@ -25,7 +25,14 @@ public class PapotageEvent extends EventObject {
         return this.papotage.getCorps();
     }
 
+    public String getTheme() {
+        return this.papotage.getTheme();
+    }
+
+
     public Object getSource() {
         return this.source;
     }
+
+
 }

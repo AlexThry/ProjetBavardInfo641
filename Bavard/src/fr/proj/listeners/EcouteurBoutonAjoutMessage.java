@@ -13,12 +13,14 @@ public class EcouteurBoutonAjoutMessage implements ActionListener {
     private JTextArea corps;
     private JComboBox<String> comboBox;
     private Fenetre fenetre;
+    private JComboBox comboThemeBox;
 
-    public EcouteurBoutonAjoutMessage(JTextField sujet, JTextArea corps, JComboBox<String> comboBox, Fenetre fenetre) {
+    public EcouteurBoutonAjoutMessage(JTextField sujet, JTextArea corps, JComboBox<String> comboBox, Fenetre fenetre, JComboBox comboThemeBox) {
         this.sujet = sujet;
         this.corps = corps;
         this.fenetre= fenetre;
         this.comboBox = comboBox;
+        this.comboThemeBox = comboThemeBox;
     }
 
     @Override
@@ -29,7 +31,7 @@ public class EcouteurBoutonAjoutMessage implements ActionListener {
             JOptionPane.showMessageDialog(fenetre, "Vous devez créer un utilisateur pour pouvoir envoyer un message...", "Erreur", JOptionPane.ERROR_MESSAGE);
         } else {
             Bavard bavard = fenetre.getBatiment().getBavards().get(comboBox.getSelectedIndex());
-            fenetre.getBatiment().sendMessage(bavard, sujet.getText(), corps.getText());
+            fenetre.getBatiment().sendMessage(bavard, sujet.getText(), corps.getText(), (String) comboThemeBox.getSelectedItem());
             sujet.setText("");
             corps.setText("");
         }

@@ -26,8 +26,8 @@ public class Concierge implements PapotageListener {
         }
     }
 
-    public void emitMessage(String sujet, String corps) {
-        PapotageEvent papotageEvent = new PapotageEvent(this, sujet, corps);
+    public void emitMessage(String sujet, String corps, String theme) {
+        PapotageEvent papotageEvent = new PapotageEvent(this, sujet, corps, theme);
         nouveauPapotage(papotageEvent);
     }
 
