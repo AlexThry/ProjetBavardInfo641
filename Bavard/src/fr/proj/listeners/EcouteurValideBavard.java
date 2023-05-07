@@ -1,7 +1,7 @@
 package fr.proj.listeners;
 
 import fr.proj.Bavard;
-import fr.proj.Fenetre;
+import fr.proj.window.Fenetre;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -26,7 +26,7 @@ public class EcouteurValideBavard implements ActionListener {
         Bavard choix = null;
 
         for (Bavard b : bavards) {
-            if (b.getPrenom().equals(choixBavard)) {
+            if (choixBavard.equals(b.getNom() + " " + b.getPrenom())) {
                 choix = b;
                 break;
             }

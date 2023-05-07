@@ -1,4 +1,4 @@
-package fr.proj;
+package fr.proj.event;
 
 import java.awt.event.ActionEvent;
 import java.util.EventObject;

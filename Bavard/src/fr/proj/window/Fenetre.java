@@ -1,16 +1,17 @@
-package fr.proj;
+package fr.proj.window;
 
+import fr.proj.Batiment;
+import fr.proj.Bavard;
+import fr.proj.interfaces.IsOnLineListener;
 import fr.proj.listeners.EcouteurBoutonAjoutMessage;
 import fr.proj.listeners.EcouteurBoutonValiderMessagerie;
 import fr.proj.listeners.EcouteurBoutonAjoutBavard;
 import fr.proj.listeners.EcouteurBoutonConnexion;
 import fr.proj.listeners.EcouteurValideBavard;
-import fr.proj.window.MessagePanel;
 
 import java.awt.*;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 
@@ -93,6 +94,7 @@ public class Fenetre extends JFrame {
 		creationBavardPanel.add(nomLabel, gbc);
 
 		this.nomTextField = new JTextField("");
+		this.nomTextField.setColumns(15);
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -136,7 +138,7 @@ public class Fenetre extends JFrame {
 			gbc.gridy = row;
 			creationBavardPanel.add(themeLabel, gbc);
 
-			JCheckBox themeCheckBox = new JCheckBox();
+			this.themeCheckBox = new JCheckBox();
 			gbc.gridx = 1;
 			gbc.gridy = row;
 			creationBavardPanel.add(themeCheckBox, gbc);
@@ -234,7 +236,7 @@ public class Fenetre extends JFrame {
 
 		JPanel messagerieTab = new JPanel();
 		tabbedPane.addTab("Messagerie", null, messagerieTab, null);
-		messagerieTab.setLayout(new BorderLayout(0, 0));
+		messagerieTab.setLayout(new BorderLayout(10, 0));
 
 		/********* Section choix du bavard *********/
 
@@ -276,7 +278,7 @@ public class Fenetre extends JFrame {
 			private JLabel prenomLabel = new JLabel();
 			private JLabel nomLabel = new JLabel();
 			private JLabel imageLabel = new JLabel();
-			private ImageIcon imageIcon = new ImageIcon("Bavard/src/fr/proj/pastille-vert.png");
+			private ImageIcon imageIcon = new ImageIcon("Bavard/src/fr/proj/image/pastille-vert.png");
 
 			@Override
 			public Component getListCellRendererComponent(JList<? extends Bavard> list, Bavard value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -324,8 +326,8 @@ public class Fenetre extends JFrame {
 		return this.bat;
 	}
 
-	public void addChoixBavardCombo(String prenomBavard){
-		this.choixBavardCombo.addItem(prenomBavard);
+	public void addChoixBavardCombo(String nomBavard, String prenomBavard){
+		this.choixBavardCombo.addItem(nomBavard + " " + prenomBavard);
 		this.prenomBavards.add(prenomBavard);
 	}
 

@@ -1,7 +1,7 @@
 package fr.proj.listeners;
 
 import fr.proj.Bavard;
-import fr.proj.Fenetre;
+import fr.proj.window.Fenetre;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,6 +1,6 @@
 package fr.proj.listeners;
 import fr.proj.Bavard;
-import fr.proj.Fenetre;
+import fr.proj.window.Fenetre;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -68,7 +68,7 @@ public class EcouteurBoutonAjoutBavard implements ActionListener {
             dateTextField.setText("jj/mm/aaaa");
 
             // Ajouter des éléments au comboBox
-            fenetre.addChoixBavardCombo(prenom);
+            fenetre.addChoixBavardCombo(nom,prenom);
             int size = fenetre.getBatiment().getBavards().size();
             fenetre.getChoixBavardComboMessage().addItem(fenetre.getBatiment().getBavards().get(size - 1).getPrenom());
 

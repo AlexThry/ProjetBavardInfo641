@@ -1,4 +1,6 @@
-package fr.proj;
+package fr.proj.event;
+
+import fr.proj.Papotage;
 
 import java.util.EventObject;
 

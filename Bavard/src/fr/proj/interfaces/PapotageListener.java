@@ -1,6 +1,6 @@
-package fr.proj;
+package fr.proj.interfaces;
 
-import java.util.EventListener;
+import fr.proj.event.PapotageEvent;
 
 public interface PapotageListener {
     public void nouveauPapotage(PapotageEvent papotageEvent);

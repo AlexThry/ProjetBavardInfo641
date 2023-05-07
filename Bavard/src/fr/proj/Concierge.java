@@ -1,5 +1,9 @@
 package fr.proj;
 
+import fr.proj.event.OnLineBavardEvent;
+import fr.proj.event.PapotageEvent;
+import fr.proj.interfaces.PapotageListener;
+
 import java.util.ArrayList;
 
 public class Concierge implements PapotageListener {
