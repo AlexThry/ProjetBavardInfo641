@@ -24,10 +24,18 @@ public class Bavard implements PapotageListener, IsOnLineListener {
         this.themesChoisis = themesChoisis;
     }
 
-    public boolean isConnected() {
-        return connected;
+    @Override
+    public boolean equals(Object o) {
+        /*
+        * redéfinis l'égalité pour les bavards
+         */
+        Bavard bavard = (Bavard) o;
+        if (this.nom == bavard.nom && this.prenom == bavard.prenom && this.dateDeNaissance == bavard.dateDeNaissance) {
+            return true;
+        } else {
+            return false;
+        }
     }
-
     @Override
     public String toString() {
         return "Bavard{" +
@@ -54,15 +62,6 @@ public class Bavard implements PapotageListener, IsOnLineListener {
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        Bavard bavard = (Bavard) o;
-        if (this.nom == bavard.nom && this.prenom == bavard.prenom && this.dateDeNaissance == bavard.dateDeNaissance) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public void emitMessage(String sujet, String corps,String theme) {
         /*
@@ -76,6 +75,9 @@ public class Bavard implements PapotageListener, IsOnLineListener {
     }
     @Override
     public void isOnlineAlert(OnLineBavardEvent onLineBavardEvent, Boolean connected) {
+        /*
+         * Permet d'ajouter des bavards ou de supprimer des bavards en ligner
+         */
         if (connected) {
             this.bavardsOnLine.add((IsOnLineListener) onLineBavardEvent.getSource());
         } else {
@@ -134,6 +136,10 @@ public class Bavard implements PapotageListener, IsOnLineListener {
 
     public ArrayList<IsOnLineListener> getBavardsOnLine() {
         return bavardsOnLine;
+    }
+
+    public boolean isConnected() {
+        return connected;
     }
 
 }

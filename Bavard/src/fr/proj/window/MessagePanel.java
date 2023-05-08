@@ -13,18 +13,23 @@ public class MessagePanel extends JPanel {
     JTextArea varContentTextArea = new JTextArea();
 
     public MessagePanel(String subject, String sender, String content, String theme) {
+        /*
+        * Création d'un message à insérer dans l'onglet messagerie
+         */
         JPanel panel = new JPanel();
+        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         panel.setLayout(grid);
-        panel.setPreferredSize(new Dimension(430, 100)); // taille fixe du panneau
+        panel.setPreferredSize(new Dimension(430, 200)); // taille fixe du panneau
+        panel.add(new JLabel("Envoyeur"));
+        varSenderLabel.setText(sender);
+        varSenderLabel.setForeground(Color.red);
+        panel.add(varSenderLabel);
         panel.add(new JLabel("Sujet : "));
         varSubjectLabel.setText(subject);
         panel.add(varSubjectLabel);
         panel.add(new JLabel("Thème :"));
         varThemeLabel.setText(theme);
         panel.add(varThemeLabel);
-        panel.add(new JLabel("Envoyeur"));
-        varSenderLabel.setText(sender);
-        panel.add(varSenderLabel);
 
         panel.add(new JLabel("Contenu"));
         varContentTextArea.setText(content);

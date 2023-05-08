@@ -265,13 +265,15 @@ public class Fenetre extends JFrame {
 
 		/********************************************* Onglet bavards connectés *********************************************/
 
-		/********* Section qui montre les bavards connectés *********/
 		JPanel panelConnectes = new JPanel();
 		tabbedPane.addTab("Bavards connectés", panelConnectes);
 		this.bavardsConnectés = new JList<>(new DefaultListModel<>());
 		this.bavardsConnectés.setBackground(new Color(0xEEEEEE));
 		this.bavardsConnectés.setFont(new Font("Arial", Font.PLAIN, 16));
 		this.bavardsConnectés.setCellRenderer(new ListCellRenderer<Bavard>() {
+			/*
+			* Permet d'afficher des panels dans une JList (pour pouvoir ajouter une image)
+			 */
 			private JPanel panel = new JPanel(new FlowLayout());
 			private JLabel prenomLabel = new JLabel();
 			private JLabel nomLabel = new JLabel();
@@ -308,12 +310,18 @@ public class Fenetre extends JFrame {
 
 
 	public void addMessage(String subject, String sender, String content, String theme) {
+		/*
+		* permet d'ajouter un MessagePanel dans l'onglet messagerie
+		 */
 		MessagePanel message = new MessagePanel(subject, sender, content, theme);
 		this.contentPaneMessage.add(message);
 		this.contentPaneMessage.revalidate();
 	}
 
 	public void removeMessages() {
+		/*
+		* Permet de nettoyer la fenetre messagerie
+		 */
 		this.contentPaneMessage.removeAll();
 		this.contentPaneMessage.revalidate();
 

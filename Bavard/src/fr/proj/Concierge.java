@@ -23,6 +23,9 @@ public class Concierge implements PapotageListener {
 
     @Override
     public void nouveauPapotage(PapotageEvent papotageEvent) {
+        /*
+        * Permet à un concierge de transférer un message aux autres bavards connectés
+         */
         for(PapotageListener bavard: this.bavardsListeners) {
             if (papotageEvent.getSource() != bavard && bavard.isConnected()) {
             bavard.nouveauPapotage(papotageEvent);
@@ -40,7 +43,4 @@ public class Concierge implements PapotageListener {
         return true;
     }
 
-    public void sendOnline(OnLineBavardEvent onLineBavardEvent) {
-
-    }
 }

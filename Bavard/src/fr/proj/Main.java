@@ -2,9 +2,19 @@ package fr.proj;
 
 import fr.proj.window.Fenetre;
 
+import java.awt.*;
+
 public class Main {
     public static void main(String[] args) {
-        Fenetre fenetre = new Fenetre();
-        fenetre.setVisible(true);
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    Fenetre frame = new Fenetre();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
