@@ -26,11 +26,16 @@ public class EcouteurBoutonAjoutMessage implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        Bavard bavard = fenetre.getBatiment().getBavards().get(comboBox.getSelectedIndex());
+
         // Récupérer les valeurs des champs nom, prénom et date de naissance
         if ((fenetre.getBatiment().getBavards()).size() == 0){
-            JOptionPane.showMessageDialog(fenetre, "Vous devez créer un utilisateur pour pouvoir envoyer un message...", "Erreur", JOptionPane.ERROR_MESSAGE);
-        } else {
-            Bavard bavard = fenetre.getBatiment().getBavards().get(comboBox.getSelectedIndex());
+            JOptionPane.showMessageDialog(fenetre, "Vous devez créer un bavard pour pouvoir envoyer un message...", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (bavard.getConnected() == false){
+            JOptionPane.showMessageDialog(fenetre, "Vous devez connecter le bavard sélectionné...", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
             fenetre.getBatiment().sendMessage(bavard, sujet.getText(), corps.getText(), (String) comboThemeBox.getSelectedItem());
             sujet.setText("");
             corps.setText("");

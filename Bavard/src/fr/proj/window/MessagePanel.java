@@ -17,7 +17,6 @@ public class MessagePanel extends JPanel {
         * Création d'un message à insérer dans l'onglet messagerie
          */
         JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         panel.setLayout(grid);
         panel.setPreferredSize(new Dimension(430, 200)); // taille fixe du panneau
         panel.add(new JLabel("Envoyeur"));

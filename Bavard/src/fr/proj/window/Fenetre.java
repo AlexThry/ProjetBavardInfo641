@@ -323,8 +323,7 @@ public class Fenetre extends JFrame {
 		* Permet de nettoyer la fenetre messagerie
 		 */
 		this.contentPaneMessage.removeAll();
-		this.contentPaneMessage.revalidate();
-
+		this.contentPaneMessage.repaint();
 	}
 
 	public Batiment getBatiment() {
